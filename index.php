@@ -38,9 +38,54 @@ $app->get(
     }
 );
 
-$app->get('/hello/:name',function ($name){
-    echo 'hello, $name';
-});
+$app->get(
+    '/api/:name',
+    function ($name){
+        $url = "http://music.163.com/api/search/pc";
+        $type = "1";
+        $offset = 0;
+        $post_data = array{
+            's' => $name,
+            'offset' => $offset,
+            'limit' => '20',
+            'type' => $type,
+        };
+        $referer = "http://music.163.com/";
+        $URL_Info = parse_url($url);
+        $value = [];
+        $result = '';
+        $request = '';
+        foreach ($post_data as $key => $value) {
+            $value[] = "$key" . urlencode($value);
+        }
+        $data_string = implode("&",$value);
+        if (!isset($URL_Info["port"])) {
+            $URL_Info['port'] = 80;
+        }
+        $request .= "POST " . $URL_Info["path"] . " HTTP/1.1\n";
+        $request .= "Host: " . $URL_Info["host"] . "\n";
+        $request .= "Referer: $referrer\n";
+        $request .= "Content-type: application/x-www-form-urlencoded\n";
+        $request .= "Content-length: " . strlen($data_string) . "\n";
+        $request .= "Connection: close\n";
+        $request .= "Cookie: " . "appver=1.5.0.75771;\n";
+        $request .= "\n";
+        $request .= $data_string . "\n";
+        $fp = fsockopen($URL_Info["host"], $URL_Info["port"]);
+        fputs($fp, $request);
+        $i = 1;
+        while (!feof($fp)) {
+            if ($i >= 15) {
+                $result .= fgets($fp);
+            } else {
+                fgets($fp);
+                $i++;
+            }
+        }
+        close($fp);
+        echo $result;
+    }
+);
 // POST route
 $app->post(
     '/post',
