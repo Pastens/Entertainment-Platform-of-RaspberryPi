@@ -1,1 +1,0 @@
-# Entertainment-Platform-of-RaspberryPi
