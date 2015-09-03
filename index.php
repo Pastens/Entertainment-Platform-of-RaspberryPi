@@ -17,7 +17,7 @@
     require_once 'includes/errorCodes.php';
 
     //Routes
-    require_once 'routes/site.php';
+    require_once 'routes/api.php';
     require_once 'routes/functions.php';
 
     //Run Slim

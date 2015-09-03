@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<input type="text" id="name" />
+	<button onclick="submit()"></button>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript">
+	function submit(){
+		var posturl = 'index.php/search';
+		$.ajax({
+			url: posturl,
+			type: 'POST',
+			dataType: 'json',
+			data: {name: $('#name').val()},
+		})
+		.done(function() {
+			console.log("success");
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+	}
+	</script>
+</body>
+</html>
