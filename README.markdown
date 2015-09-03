@@ -6,12 +6,4 @@ Here is the introduction of Slim Framework
 
 #API Docs
 
-##Search Function:
-    method: GET
-    url: /api/search
-    parameter: name
-    example:
-        search={
-            name:'name',
-        }
-        return json_songlist;
+Remained to be written
