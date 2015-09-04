@@ -89,23 +89,25 @@
 		//Get method
 		$app->get('/',function (){
 			global $conn;
-			$information = "SELECT id,music_name,url FROM playlist WHERE enable = '1'";
-			if($rs  = $conn->query($information)){
+			$sql = "SELECT id,music_name,url FROM playlist WHERE enable = '1'";
+			if($rs = $conn->query($sql)){
 				while ($row = $rs->fetch_row()){
 					echo json_encode($row);
 				}
 				$rs->close();
 			}
+			$conn->close();
 		});
 		$app->post('/',function (){
 			global $conn;
-			$information = "SELECT id,music_name,url FROM playlist WHERE enable = '1'";
-			if($rs  = $conn->query($information)){
+			$sql = "SELECT id,music_name,url FROM playlist WHERE enable = '1'";
+			if($rs = $conn->query($sql)){
 				while ($row = $rs->fetch_row()){
 					echo json_encode($row);
 				}
 				$rs->close();
 			}
+			$conn->close();
 		});
 	});
 
@@ -113,7 +115,17 @@
 	$app->group('/new',function () use ($app) {
 		//Warning! For safety, only post will be accepted
 		$app->post('/',function (){
-
+			$music_name = $_POST['music_name'];
+			$artist = $_POST['artist'];
+			$album = $_POST['album'];
+			$url = $_POST['url'];
+			global $conn;
+			$sql = "INSERT INTO music_db(music_name,artist,album,url) VALUES ('$music_name','$artist','$album','$url')";
+			if($rs = $conn->query($sql)){
+				function download($url);
+				echo json_encode('success');
+			}
+			$conn->close();
 		});
 	});
 ?>

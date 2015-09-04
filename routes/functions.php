@@ -78,4 +78,9 @@
 	    return curl_get($url);
 	}
 
+	//Music Download Function
+	function download($music_url){
+		
+	}
+
 ?>
