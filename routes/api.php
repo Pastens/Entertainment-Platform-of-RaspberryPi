@@ -32,14 +32,14 @@
 			echo 'Information API is go';
 		});
 		//Get method
-		$app->get('/:MusicId',function ($MusicId){
-			$result = music_info($MusicId);
+		$app->get('/:music',function ($music){
+			$result = music_info($music);
 			echo $result;
 		});
 		//Post method
 		$app->post('/',function (){
-			$MusicId = $_POST['MusicId'];
-			$result = music_info($MusicId);
+			$music = $_POST['music'];
+			$result = music_info($music);
 			echo $result;
 		});
 	});
@@ -92,7 +92,7 @@
 		});
 		$app->post('/',function (){
 			
-		})
+		});
 	});
 
 ?>
