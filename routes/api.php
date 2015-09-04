@@ -3,14 +3,14 @@
 
 	//API Page
 	$app->get('/',function () {
-		echo 'Api is go';
+		echo json_encode('Api is go');
 	});
 	
 	//Search API Routes
 	$app->group('/search',function () use ($app) {
 		//Root method
 		$app->get('/',function (){
-			echo 'Search API is go';
+			echo json_encode('Search API is go');
 		});
 		//Get method
 		$app->get('/:name',function ($name) {
@@ -29,7 +29,7 @@
 	$app->group('/music',function () use ($app) {
 		//Root method
 		$app->get('/',function (){
-			echo 'Information API is go';
+			echo json_encode('Information API is go');
 		});
 		//Get method
 		$app->get('/:music',function ($music){
@@ -48,7 +48,7 @@
 	$app->group('/artist',function () use ($app) {
 		//Root method
 		$app->get('/',function (){
-			echo 'Artiset-Album API is go';
+			echo json_encode('Artiset-Album API is go');
 		});
 		//Get method
 		$app->get('/:artist', function ($artist){
@@ -67,7 +67,7 @@
 	$app->group('/album',function () use ($app) {
 		//Root method
 		$app->get('/',function (){
-			echo 'Album Information API is go';
+			echo json_encode('Artiset-Album API is go');
 		});
 		//Get method
 		$app->get('/:album', function ($album){
@@ -122,7 +122,7 @@
 			global $conn;
 			$sql = "INSERT INTO music_db(music_name,artist,album,url) VALUES ('$music_name','$artist','$album','$url')";
 			if($rs = $conn->query($sql)){
-				function download($url);
+				download($url);
 				echo json_encode('success');
 			}
 			$conn->close();
