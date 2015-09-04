@@ -88,11 +88,32 @@
 	$app->group('/playlist',function () use ($app) {
 		//Get method
 		$app->get('/',function (){
-			
+			global $conn;
+			$information = "SELECT id,music_name,url FROM playlist WHERE enable = '1'";
+			if($rs  = $conn->query($information)){
+				while ($row = $rs->fetch_row()){
+					echo json_encode($row);
+				}
+				$rs->close();
+			}
 		});
 		$app->post('/',function (){
-			
+			global $conn;
+			$information = "SELECT id,music_name,url FROM playlist WHERE enable = '1'";
+			if($rs  = $conn->query($information)){
+				while ($row = $rs->fetch_row()){
+					echo json_encode($row);
+				}
+				$rs->close();
+			}
 		});
 	});
 
+	//New Order API Routes
+	$app->group('/new',function () use ($app) {
+		//Warning! For safety, only post will be accepted
+		$app->post('/',function (){
+
+		});
+	});
 ?>

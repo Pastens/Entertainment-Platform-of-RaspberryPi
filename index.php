@@ -14,7 +14,6 @@
 
     //Configurations
     require_once 'includes/db_config.php';
-    require_once 'includes/errorCodes.php';
 
     //Routes
     require_once 'routes/api.php';

@@ -6,6 +6,7 @@
 <body>
 	<input type="text" id="name" />
 	<button onclick="submit()"></button>
+	<div id="result"></div>
 	<script type="text/javascript" src="jquery.min.js"></script>
 	<script type="text/javascript">
 	function submit(){
@@ -15,15 +16,10 @@
 			type: 'POST',
 			dataType: 'json',
 			data: {name: $('#name').val()},
-		})
-		.done(function() {
-			console.log("success");
-		})
-		.fail(function() {
-			console.log("error");
-		})
-		.always(function() {
-			console.log("complete");
+			success: function (data){
+				var result = data.result;
+				$('#result').html('<p>'+result.songCount+'</p>');
+			}
 		});
 	}
 	</script>
