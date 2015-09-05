@@ -2,13 +2,39 @@
 
 Using Slim Framework as a restful api server
 
-#Notice
+##Notice
 
 The urls listed below only works when the mod_rewrite module is set right to hide the 'index.php' route in the urls.
 
 Search "Mod_Rewrite" to learn more.
 
-#API Docs
+##Database Schema
+
+	'music_db'
+		'id'
+			int(10) unsigned zerofill NOT NULL , Auto Increase
+			PRIMARY KEY
+		'music_name'
+			text
+		'artist'
+			text
+		'url'
+			text
+		'count'
+			int(11) NOT NULL , Default '1'
+
+	'playlist'
+		'id'
+			int(10) unsigned zerofill NOT NULL , Auto Increase
+			PRIMARY KEY
+		'music_name'
+			text
+		'url'
+			text
+		'enable'
+			boolean NOT NULL , Default '1'
+
+##API Docs
 
 Search API
 
@@ -73,4 +99,4 @@ New Order API
 	}
 
 
-##To be continued
+###To be continued
