@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2015-09-04 13:10:16
+-- Generation Time: 2015-09-05 05:37:03
 -- 服务器版本： 5.6.23
 -- PHP Version: 5.5.27
 
@@ -44,6 +44,8 @@ CREATE TABLE IF NOT EXISTS `music_db` (
 CREATE TABLE IF NOT EXISTS `playlist` (
   `id` int(10) unsigned zerofill NOT NULL,
   `music_name` text,
+  `user` text,
+  `comment` text,
   `url` text,
   `enable` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

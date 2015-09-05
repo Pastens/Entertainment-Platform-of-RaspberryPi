@@ -79,8 +79,32 @@
 	}
 
 	//Music Download Function
-	function download($music_url){
-		
+	function download($music_url,$music_name){
+		$content = http_get_data($music_url);
+		//Please Replace the route below when you deploy it on your raspberry pi
+    	//And use chmod to make it writeable
+    	$dir = '/Library/WebServer/Documents/download/';
+    	$filename = $music_name.'.mp3';
+    	$route = $dir.$filename;
+    	//Bond stream to a file
+    	$fp = @fopen($route,"a");
+    	//Write a file
+    	fwrite($fp, $content);
+    	return $route;
+	}
+
+	//HTTP GET Data function
+	function http_get_data($url){
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_URL, $url);
+		ob_start();
+		curl_exec($ch);
+		$return_content = ob_get_contents();
+		ob_end_clean();
+		$return_code = curl_getinfo($ch,CURLINFO_HTTP_CODE);
+		return $return_content;
 	}
 
 ?>

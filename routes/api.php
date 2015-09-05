@@ -115,15 +115,23 @@
 	$app->group('/new',function () use ($app) {
 		//Warning! For safety, only post will be accepted
 		$app->post('/',function (){
+			$user = $_POST['user'];
+			$comment = $_POST['comment'];
 			$music_name = $_POST['music_name'];
 			$artist = $_POST['artist'];
 			$album = $_POST['album'];
 			$url = $_POST['url'];
+			//Download Function
+			$route = download($url);
+			
+			//Database Connection
 			global $conn;
 			$sql = "INSERT INTO music_db(music_name,artist,album,url) VALUES ('$music_name','$artist','$album','$url')";
-			if($rs = $conn->query($sql)){
-				download($url);
+			$play_sql = "INSERT INTO playlist(music_name,user,comment,url) VALUES ('$music_name','$user','$comment','$route')";
+			if($rs = $conn->query($sql) && $play_rs = $conn->query($play_sql)){
 				echo json_encode('success');
+				$rs->close();
+				$play_rs->close();
 			}
 			$conn->close();
 		});
