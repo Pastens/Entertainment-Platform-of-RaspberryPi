@@ -13,14 +13,15 @@
 			echo json_encode('Search API is go');
 		});
 		//Get method
-		$app->get('/:name',function ($name) {
-			$result = music_search($name,'1','0');
+		$app->get('/:name/:type',function ($name,$type) {
+			$result = music_search($name,$type,'0');
 			echo $result;
 		});
 		//Post method
 		$app->post('/',function (){
 			$name = $_POST['name'];
-			$result = music_search($name,'1','0');
+			$type = $_POST['type'];
+			$result = music_search($name,$type,'0');
 			echo $result;
 		});
 	});
@@ -123,7 +124,6 @@
 			$url = $_POST['url'];
 			//Download Function
 			$route = download($url);
-			
 			//Database Connection
 			global $conn;
 			$sql = "INSERT INTO music_db(music_name,artist,album,url) VALUES ('$music_name','$artist','$album','$url')";

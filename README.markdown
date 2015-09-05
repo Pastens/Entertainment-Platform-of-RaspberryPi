@@ -18,6 +18,8 @@ Search "Mod_Rewrite" to learn more.
 			text
 		'artist'
 			text
+		'album'
+			text
 		'url'
 			text
 		'count'
@@ -28,6 +30,10 @@ Search "Mod_Rewrite" to learn more.
 			int(10) unsigned zerofill NOT NULL , Auto Increase
 			PRIMARY KEY
 		'music_name'
+			text
+		'user'
+			text
+		'comment'
 			text
 		'url'
 			text
@@ -42,7 +48,8 @@ Search API
 	content-type: json
 	url: 'api/search'
 	{
-		name: 'keyword-here'
+		name: 'keyword-here',
+		type: 'search-type'
 	}
 
 
@@ -92,10 +99,12 @@ New Order API
 	content-type: json
 	url: 'api/new'
 	{
-		music_name: 'music_name',
-		artist: 'artist_name',
-		album: 'album_name',
-		url: 'download_url'
+		user: 'user_name',
+		comment: 'comment-content',
+		music_name: 'music-name',
+		artist: 'artist-name',
+		album: 'album-name',
+		url: 'download-url'
 	}
 
 
