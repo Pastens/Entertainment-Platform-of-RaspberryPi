@@ -5,7 +5,14 @@
 </head>
 <body>
 	<input type="text" id="name" />
-	<button onclick="submit()"></button>
+	<select id="type">
+		<option value='1'>歌曲</option>
+		<option value='10'>专辑</option>
+		<option value='100'>歌手</option>
+		<option value='1006'>歌词</option>
+	</select>
+	<button onclick="submit()">Search</button>
+
 	<div id="result"></div>
 	<script type="text/javascript" src="jquery.min.js"></script>
 	<script type="text/javascript">
@@ -15,11 +22,36 @@
 			url: posturl,
 			type: 'POST',
 			dataType: 'json',
-			data: {name: $('#name').val()},
+			data: {name: $('#name').val(), type:$('#type').val()},
 			success: function (data){
 				var result = data.result;
 				$('#result').html('<p>'+result.songCount+'</p>');
+				for(var i=0;i<=20;i++){
+					var list = result.songs[i];
+					var album = list.album;
+					var artist = list.artists[0];
+					$('#result').append('<li>'+album.name+'<br/>'+list.name+'<br/>'+artist.name+'<button class="submit" value="'+list.mp3Url+'">点歌</button>'+'</li>');
+				}
+
 			}
+		});
+		$('.submit').click(function() {
+			$.ajax({
+				url: '/index.php/new',
+				type: 'POST',
+				dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
+				data: {param1: 'value1'},
+			})
+			.done(function() {
+				console.log("success");
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+				console.log("complete");
+			});
+			
 		});
 	}
 	</script>
