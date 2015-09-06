@@ -92,8 +92,12 @@
 			global $conn;
 			$sql = "SELECT id,music_name,url FROM playlist WHERE enable = '1'";
 			if($rs = $conn->query($sql)){
-				while ($row = $rs->fetch_row()){
-					echo json_encode($row);
+				while ($row = $rs->fetch_assoc()){
+					$return['id'] = $row['id'];
+					$return['music_name'] = $row['music_name'];
+					$return['url'] = $row['url'];
+					echo $return['url'];
+					echo "\n";
 				}
 				$rs->close();
 			}
@@ -103,8 +107,11 @@
 			global $conn;
 			$sql = "SELECT id,music_name,url FROM playlist WHERE enable = '1'";
 			if($rs = $conn->query($sql)){
-				while ($row = $rs->fetch_row()){
-					echo json_encode($row);
+				while ($row = $rs->fetch_assoc()){
+					$return['id'] = $row['id'];
+					$return['music_name'] = $row['music_name'];
+					$return['url'] = $row['url'];
+					echo json_encode($return);
 				}
 				$rs->close();
 			}
@@ -123,7 +130,7 @@
 			$album = $_POST['album'];
 			$url = $_POST['url'];
 			//Download Function
-			$route = download($url);
+			$route = download($url,$music_name);
 			//Database Connection
 			global $conn;
 			$sql = "INSERT INTO music_db(music_name,artist,album,url) VALUES ('$music_name','$artist','$album','$url')";

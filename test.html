@@ -13,8 +13,12 @@
 	</select>
 	<button onclick="submit()">Search</button>
 
-	<div id="result"></div>
+
+	<table>
+		<tbody id="result"></tbody>
+	</table>
 	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="jquery.serializejson.min.js"></script>
 	<script type="text/javascript">
 	function submit(){
 		var posturl = 'index.php/search';
@@ -25,35 +29,42 @@
 			data: {name: $('#name').val(), type:$('#type').val()},
 			success: function (data){
 				var result = data.result;
-				$('#result').html('<p>'+result.songCount+'</p>');
 				for(var i=0;i<=20;i++){
 					var list = result.songs[i];
 					var album = list.album;
 					var artist = list.artists[0];
-					$('#result').append('<li>'+album.name+'<br/>'+list.name+'<br/>'+artist.name+'<button class="submit" value="'+list.mp3Url+'">点歌</button>'+'</li>');
+					$('#result').append('<tr><td><img src="'+album.picUrl+'" style="width:50px;height:50px" /></td><td>'+album.name+'</td><td>'+list.name+'</td><td>'+artist.name+'</td><td><button value="'+list.mp3Url+'" onclick="download(this);">点歌</button></td></tr>');
 				}
 
 			}
-		});
-		$('.submit').click(function() {
-			$.ajax({
-				url: '/index.php/new',
-				type: 'POST',
-				dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
-				data: {param1: 'value1'},
-			})
-			.done(function() {
-				console.log("success");
-			})
-			.fail(function() {
-				console.log("error");
-			})
-			.always(function() {
-				console.log("complete");
-			});
+		});	
+	};
+	function download(obj) {
+			var tr = obj.parentNode.parentNode;
+			var tds = tr.cells;
+			var album = tds[1].innerHTML;
+			var name = tds[2].innerHTML;
+			var artist = tds[3].innerHTML;
+			var url = obj.value;
+			alert(url);
 			
-		});
-	}
+			$.ajax({
+				url: 'index.php/new',
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					user: 'hello',
+					comment: 'hello',
+					music_name: name,
+					artist: artist,
+					album: album,
+					url: url
+				},
+				success: function () {
+					alert('success');
+				}
+			});	
+		};
 	</script>
 </body>
 </html>
