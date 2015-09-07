@@ -1,64 +1,61 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!doctype html>
+<html lang="zh">
+
 <head>
-	<!-- meta settings -->
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
-
-	<title>MyDisc —— 树莓派娱乐一体化平台</title>
-	<!-- Metro Framework Settings -->
-	<link href="../metro/css/metro.min.css" rel="stylesheet" />
-	<link href="../metro/css/metro-responsive.min.css" rel="stylesheet" />
-	<link href="../metro/css/metro-schemes.min.css" rel="stylesheet" />
-	<link href="../metro/css/metro-rtl.min.css" rel="stylesheet" />
-	<link href="../metro/css/metro-icons.min.css" rel="stylesheet" />
-
-	<!-- Custom Settings -->
-	<link href="../css/styles.css" rel="stylesheet" type="text/css" />
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicBox</title>
+    <link rel="stylesheet" type="text/css" href="../css/default.css">
+    <link rel='stylesheet prefetch' href='http://libs.useso.com/js/font-awesome/4.2.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
 </head>
+
 <body>
-<!-- Header Start -->
-<div class="container page-content">
-	<div class="app-bar">
-	    <ul class="app-bar-menu">
-	        <li><a href="">首页</a></li>
-	        <li>
-	            <a href="" class="dropdown-toggle">搜索点歌</a>
-	            <ul class="d-menu" data-role="dropdown">
-	                <li><a href="">歌名点歌</a></li>
-	                <li><a href="">歌星点歌</a></li>
-	                <li><a href="">专辑点歌</a></li>
-	                <li><a href="">歌词点歌</a></li>
-	                <li class="divider"></li>
-	                <li><a href="" class="dropdown-toggle">更多项目</a>
-	                    <ul class="d-menu" data-role="dropdown">
-	                        <li><a href="">在线试听</a></li>
-	                        <li><a href="">下载到手机</a></li>
-	                    </ul>
-	                </li>
-	            </ul>
-	        </li>
-	        <li><a href="">播放列表</a></li>
-	        <li><a href="">关于我们</a></li>
-	    </ul>
-	</div>
-<!-- Banner Start -->
-	<div class="grid align-center">
-		<div class="row">
-			<div class="cell">
-				<div class="image-container bordered">
-					<div class="frame">
-						<img src="../image/banner.png" />
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-	<!-- Jquery & Metro Framework Settings  -->
-	<script type="text/javascript" src="../scripts/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="../metro/js/metro.min.js"></script>
+    <section class="cd-slider-wrapper">
+        <ul class="cd-slider">
+            <li class="visible">
+                <div>
+                    <h2>My MusicBox</h2>
+                    <p>定制化点歌播放平台<br/>带给你定制化的音氛享受</p>
+                    <a href="../order.html" target="_blank">进入点歌</a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <h2>歌单列表</h2>
+                    <p>放在卧室、餐厅、咖啡吧<br/>即可让房间中的人<br/>定制歌曲</p>
+                    <a href="../playlist.html" target="_blank">查看播放列表</a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <h2>关于我们</h2>
+                    <p>浙江大学生仪学院<br/>生产实习 第二组</p>
+                </div>
+            </li>
+        </ul>
+        <!-- .cd-slider -->
+        <ol class="cd-slider-navigation">
+            <li class="selected"><a><em>首页</em></a></li>
+            <li><a><em>播放列表</em></a></li>
+            <li><a><em>关于我们</em></a></li>
+        </ol>
+        <!-- .cd-slider-navigation -->
+        <div class="cd-svg-cover" data-step1="M1402,800h-2V0.6c0-0.3,0-0.3,0-0.6h2v294V800z" data-step2="M1400,800H383L770.7,0.6c0.2-0.3,0.5-0.6,0.9-0.6H1400v294V800z" data-step3="M1400,800H0V0.6C0,0.4,0,0.3,0,0h1400v294V800z" data-step4="M615,800H0V0.6C0,0.4,0,0.3,0,0h615L393,312L615,800z" data-step5="M0,800h-2V0.6C-2,0.4-2,0.3-2,0h2v312V800z" data-step6="M-2,800h2L0,0.6C0,0.3,0,0.3,0,0l-2,0v294V800z" data-step7="M0,800h1017L629.3,0.6c-0.2-0.3-0.5-0.6-0.9-0.6L0,0l0,294L0,800z" data-step8="M0,800h1400V0.6c0-0.2,0-0.3,0-0.6L0,0l0,294L0,800z" data-step9="M785,800h615V0.6c0-0.2,0-0.3,0-0.6L785,0l222,312L785,800z" data-step10="M1400,800h2V0.6c0-0.2,0-0.3,0-0.6l-2,0v312V800z">
+            <svg height='100%' width="100%" preserveAspectRatio="none" viewBox="0 0 1400 800">
+                <title>SVG cover layer</title>
+                <desc>an animated layer to switch from one slide to the next one</desc>
+                <path id="cd-changing-path" d="M1402,800h-2V0.6c0-0.3,0-0.3,0-0.6h2v294V800z" />
+            </svg>
+        </div>
+        <!-- .cd-svg-cover -->
+    </section>
+    <!-- .cd-slider-wrapper -->
+    <script src="../scripts/jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="../scripts/jquery/modernizr.js" type="text/javascript"></script>
+    <script src="../scripts/jquery/snap.svg-min.js" type="text/javascript"></script>
+    <script src="../scripts/template/svg.js" type="text/javascript"></script>
 </body>
+
 </html>
