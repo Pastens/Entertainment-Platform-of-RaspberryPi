@@ -13,15 +13,14 @@
 			echo json_encode('Search API is go');
 		});
 		//Get method
-		$app->get('/:name/:type',function ($name,$type) {
-			$result = music_search($name,$type,'0');
+		$app->get('/:name',function ($name) {
+			$result = music_search($name);
 			echo $result;
 		});
 		//Post method
 		$app->post('/',function (){
 			$name = $_POST['name'];
-			$type = $_POST['type'];
-			$result = music_search($name,$type,'0');
+			$result = music_search($name);
 			echo $result;
 		});
 	});
