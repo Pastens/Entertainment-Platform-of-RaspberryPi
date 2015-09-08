@@ -47,7 +47,7 @@ function music_search($word, $type,$off)
     $request .= "Content-type: application/x-www-form-urlencoded\n";
     $request .= "Content-length: " . strlen($data_string) . "\n";
     $request .= "Connection: close\n";
-    $request .= "Cookie: " . "appver=1.5.0.75771;\n";
+    $request .= "Cookie: " . "appver=1.3.0;\n";
     $request .= "\n";
     $request .= $data_string . "\n";
     $fp = fsockopen($URL_Info["host"], $URL_Info["port"]);
