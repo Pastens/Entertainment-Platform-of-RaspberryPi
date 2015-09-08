@@ -17,23 +17,29 @@
 	    return curl_get($url);
 	}
 
-	//Music Detail Function
-	function music_info($music_id){
-	    $url = "http://music.163.com/api/song/detail/?id=" . $music_id . "&ids=%5B" . $music_id . "%5D";
-	    return curl_get($url);
+	//Download URL Function
+	function music_url($id){
+		$url = "http://ting.baidu.com/data/music/links?songIDs=".$id;
+		return curl_get($url);
 	}
+
+	// Music Detail Function
+	// function music_info($music_id){
+	//     $url = "http://music.163.com/api/song/detail/?id=" . $music_id . "&ids=%5B" . $music_id . "%5D";
+	//     return curl_get($url);
+	// }
 	
-	//Artist-Album Function
-	function artist_album($artist_id, $limit){
-	    $url = "http://music.163.com/api/artist/albums/" . $artist_id . "?limit=" . $limit;
-	    return curl_get($url);
-	}
+	// Artist-Album Function
+	// function artist_album($artist_id, $limit){
+	//     $url = "http://music.163.com/api/artist/albums/" . $artist_id . "?limit=" . $limit;
+	//     return curl_get($url);
+	// }
 	
-	//Album Detail Function
-	function album_info($album_id){
-	    $url = "http://music.163.com/api/album/" . $album_id;
-	    return curl_get($url);
-	}
+	// Album Detail Function
+	// function album_info($album_id){
+	//     $url = "http://music.163.com/api/album/" . $album_id;
+	//     return curl_get($url);
+	// }
 
 	//Music Download Function
 	function download($music_url,$music_name){
