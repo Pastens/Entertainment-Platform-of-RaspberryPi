@@ -24,6 +24,19 @@
 			echo $result;
 		});
 	});
+
+	//Url API Routes
+	$app->group('/url',function () use ($app){
+		//Root method
+		$app->get('/',function (){
+			echo json_encode('Url API is go!');
+		});
+		//Get method
+		$app->get('/:id',function ($id) {
+			$result = music_url($id);
+			echo $result;
+		});
+	});
 	
 	//Music Information API Routes
 	$app->group('/music',function () use ($app) {
