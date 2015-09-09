@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2015-09-05 05:37:03
--- 服务器版本： 5.6.23
+-- Generation Time: 2015-09-09 16:18:31
+-- 服务器版本： 5.6.26
 -- PHP Version: 5.5.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -47,7 +47,9 @@ CREATE TABLE IF NOT EXISTS `playlist` (
   `user` text,
   `comment` text,
   `url` text,
-  `enable` tinyint(1) NOT NULL DEFAULT '1'
+  `enable` tinyint(1) NOT NULL DEFAULT '1',
+  `artist` text,
+  `album` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

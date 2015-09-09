@@ -29,7 +29,7 @@
 		$content = http_get_data($music_url);
 		//Please Replace the route below when you deploy it on your raspberry pi
     	//And use chmod to make it writeable
-    	$dir = '/Library/WebServer/Documents/download/';
+    	$dir = '/Library/WebServer/Documents/api/download/';
     	
     	$filename = $music_name.'.mp3';
     	$route = $dir.$filename;

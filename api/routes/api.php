@@ -1,5 +1,4 @@
 <?php
-	ini_set('display_errors', 'on');
 
 	//API Page
 	$app->get('/',function () {
@@ -102,29 +101,35 @@
 		//Get method
 		$app->get('/',function (){
 			global $conn;
-			$sql = "SELECT id,music_name,url FROM playlist WHERE enable = '1'";
+			$sql = "SELECT id,music_name,url,user FROM playlist WHERE enable = '1'";
 			if($rs = $conn->query($sql)){
 				while ($row = $rs->fetch_assoc()){
-					$return['id'] = $row['id'];
 					$return['music_name'] = $row['music_name'];
-					$return['url'] = $row['url'];
-					echo $return['url'];
+					$name = $return['music_name'];
+					$sql_up = "UPDATE playlist SET enable = '0' WHERE music_name = '$name' ";
+					$update = $conn->query($sql_up);
+					echo $return['music_name'];
 					echo "\n";
 				}
 				$rs->close();
 			}
 			$conn->close();
 		});
-		$app->post('/',function (){
+		$app->get('/json',function (){
 			global $conn;
-			$sql = "SELECT id,music_name,url FROM playlist WHERE enable = '1'";
+			$sql = "SELECT id,music_name,url,user,artist,album FROM playlist";
 			if($rs = $conn->query($sql)){
+				$count = 0;
 				while ($row = $rs->fetch_assoc()){
-					$return['id'] = $row['id'];
 					$return['music_name'] = $row['music_name'];
 					$return['url'] = $row['url'];
-					echo json_encode($return);
+					$return['user'] = $row['user'];
+					$return['artist'] = $row['artist'];
+					$return['album'] = $row['album'];
+					$result[$count] = $return;
+					$count ++;
 				}
+				echo json_encode($result);
 				$rs->close();
 			}
 			$conn->close();
@@ -133,24 +138,32 @@
 
 	//New Order API Routes
 	$app->group('/new',function () use ($app) {
-		//Warning! For safety, only post will be accepted
 		$app->post('/',function (){
 			$user = $_POST['user'];
+			$user = addslashes($user);
 			$comment = $_POST['comment'];
+			$comment = addslashes($comment);
+
 			$music_name = $_POST['music_name'];
+			$music_name = addslashes($music_name);
+
 			$artist = $_POST['artist'];
+			$artist = addslashes($artist);
+
 			$album = $_POST['album'];
+			$album = addslashes($album);
+
 			$url = $_POST['url'];
 			//Download Function
 			$route = download($url,$music_name);
 			//Database Connection
 			global $conn;
 			$sql = "INSERT INTO music_db(music_name,artist,album,url) VALUES ('$music_name','$artist','$album','$url')";
-			$play_sql = "INSERT INTO playlist(music_name,user,comment,url) VALUES ('$music_name','$user','$comment','$route')";
+			$play_sql = "INSERT INTO playlist(music_name,user,comment,artist,album,url) VALUES ('$music_name','$user','$comment','$artist','$album','$route')";
 			if($rs = $conn->query($sql) && $play_rs = $conn->query($play_sql)){
 				echo json_encode('success');
-				$rs->close();
-				$play_rs->close();
+			} else {
+				echo 'fail';
 			}
 			$conn->close();
 		});
