@@ -9,8 +9,8 @@ $(document).ready(function() {
             var result = data.song;
             if (result.length != 0) {
                 for (var i = 0; i < 10; i++) {
-                    $('#result').append('<div class="col-md-3 col-xs-6"><div class="thumbnail"><div class="caption"><h3>' + result[i].songname + '</h3><p style="text-align:right">歌手 —— ' + result[i].artistname + '</p><p style="text-align:right"><a class="btn btn-primary" onclick="showmore('+result[i].songid+');">点歌</a></p></div></div></div>');
-                    if ((i + 1) % 4 == 0) {
+                    $('#result').append('<div class="col-xs-6"><div class="thumbnail"><div class="caption"><h3>' + result[i].songname + '</h3><p style="text-align:right">歌手 —— ' + result[i].artistname + '</p><p style="text-align:right"><a class="btn btn-primary" onclick="showmore('+result[i].songid+');">点歌</a></p></div></div></div>');
+                    if ((i + 1) % 2 == 0) {
                         $('#result').append('<div class="clearfix"></div>');
                     }
                 }
